@@ -1,5 +1,6 @@
 package br.com.evaldo91.LiterAlura;
 
+import br.com.evaldo91.LiterAlura.domain.autor.AutorRepository;
 import br.com.evaldo91.LiterAlura.domain.livro.LivrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,7 +12,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class LiterAluraApplication implements CommandLineRunner {
 
 	@Autowired
-	private LivrosRepository repository;
+	private LivrosRepository livrosRepository;
+	@Autowired
+	private AutorRepository autorRepository;
 
 
 
@@ -24,7 +27,7 @@ public class LiterAluraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		App app = new App(repository);
+		App app = new App(autorRepository, livrosRepository);
 		//            var logo = "\n" +
 //                    ".____    .__  __                  _____  .__                       \n" +
 //                    "|    |   |__|/  |_  ___________  /  _  \\ |  |  __ ______________   \n" +

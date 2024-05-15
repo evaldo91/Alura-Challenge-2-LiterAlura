@@ -1,5 +1,6 @@
 package br.com.evaldo91.LiterAlura.domain.autor;
 
+import br.com.evaldo91.LiterAlura.domain.livro.DadosLivro;
 import br.com.evaldo91.LiterAlura.domain.livro.Livro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,16 +28,32 @@ public class Autor {
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Livro> livros;
 
-    public Autor(DadosAutor dados){
-        this.nome = dados.nome();
-        this.nascimento = dados.nascimento();
-        this.falecimento = dados.falecimento();
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", nascimento=" + nascimento +
+                ", falecimento=" + falecimento +
+                ", livros=" + livros +
+                '}';
+    }
+
+    public Autor(Livro livro) {
+        this.nome = livro.getAutor().getNome();
+        this.nascimento = livro.getAutor().getNascimento();
+        this.falecimento = livro.getAutor().getFalecimento();
         this.livros = new ArrayList<>();
 
     }
 
-
-    public void adicionarLivro(Livro livro) {
-        this.livros.add(livro);
+    public Autor(DadosAutor dadosAutor) {
     }
+
+
+    public void adicionarLivro(List<Livro> livros) {
+        livros.forEach(l -> l.setAutor(this));
+        this.livros = livros;
+    }
+
 }
