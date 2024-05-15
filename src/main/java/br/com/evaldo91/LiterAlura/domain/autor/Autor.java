@@ -40,9 +40,9 @@ public class Autor {
     }
 
     public Autor(Livro livro) {
-        this.nome = livro.getAutor().getNome();
-        this.nascimento = livro.getAutor().getNascimento();
-        this.falecimento = livro.getAutor().getFalecimento();
+        this.nome = livro.getAutor().nome();
+        this.nascimento = livro.getAutor().nascimento();
+        this.falecimento = livro.getAutor().falecimento();
         this.livros = new ArrayList<>();
 
     }
@@ -51,9 +51,9 @@ public class Autor {
     }
 
 
-    public void adicionarLivro(List<Livro> livros) {
-        livros.forEach(l -> l.setAutor(this));
-        this.livros = livros;
-    }
+//    public void adicionarLivro(List<Livro> livros) {
+//        livros.forEach(l -> l.setAutor(this));
+//        this.livros = livros;
+//    }
 
 }
