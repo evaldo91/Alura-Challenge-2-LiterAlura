@@ -1,12 +1,15 @@
 package br.com.evaldo91.LiterAlura.domain.livro;
 
+import lombok.Getter;
+
+@Getter
 public enum Idioma {
     ES("es"),
     EN("en"),
     FR("fr"),
     PT("pt");
 
-    private String idioma;
+    private final String idioma;
 
     Idioma(String idioma) {
         this.idioma = idioma;
@@ -20,7 +23,6 @@ public enum Idioma {
         throw new IllegalArgumentException("Nenhum livro encontrado em " + text);
     }
 
-    public String getIdioma(){
-        return this.idioma;
-    }
+
+
 }

@@ -1,9 +1,9 @@
 package br.com.evaldo91.LiterAlura.domain.autor;
 
-import br.com.evaldo91.LiterAlura.domain.livro.DadosLivro;
 import br.com.evaldo91.LiterAlura.domain.livro.Livro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "autores")
+@EqualsAndHashCode(of = "id")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,35 +26,24 @@ public class Autor {
     private int nascimento;
     private int falecimento;
 
+    @Embedded
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Livro> livros;
 
-    @Override
-    public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", nascimento=" + nascimento +
-                ", falecimento=" + falecimento +
-                ", livros=" + livros +
-                '}';
-    }
-
-    public Autor(Livro livro) {
-        this.nome = livro.getAutor().nome();
-        this.nascimento = livro.getAutor().nascimento();
-        this.falecimento = livro.getAutor().falecimento();
+    public Autor(List<DadosAutor> dados){
+        this.nome = dados.getFirst().nome();
+        this.nascimento = dados.getFirst().nascimento();
+        this.falecimento = dados.getFirst().falecimento();
         this.livros = new ArrayList<>();
 
     }
 
-    public Autor(DadosAutor dadosAutor) {
+
+
+    public void setLivros(Livro livros) {
+        livros.setAutor(this);
+
     }
 
-
-//    public void adicionarLivro(List<Livro> livros) {
-//        livros.forEach(l -> l.setAutor(this));
-//        this.livros = livros;
-//    }
 
 }

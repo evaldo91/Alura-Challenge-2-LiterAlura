@@ -12,7 +12,7 @@
 	<artifactId>LiterAlura</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>LiterAlura</name>
-	<description>Alura Challenge Java: LiterAlura</description>
+	<description>Aplicativo cli de consulta de dados de livros</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -21,8 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
