@@ -1,8 +1,5 @@
 package br.com.evaldo91.LiterAlura.domain.livro;
 
-import lombok.Getter;
-
-@Getter
 public enum Idioma {
     ES("es"),
     EN("en"),
