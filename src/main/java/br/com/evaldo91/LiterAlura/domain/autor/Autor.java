@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name = "autores")
+@Table(name = "autores")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +30,7 @@ public class Autor {
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Livro> livro = new ArrayList<>();
 
-    public Autor(DadosAutor dados){
-        this.nome = dados.nome();
-        this.nascimento = dados.nascimento();
-        this.falecimento = dados.falecimento();
 
-
-    }
 
     public Autor(List<DadosAutor> dados) {
         this.nome = dados.getFirst().nome();

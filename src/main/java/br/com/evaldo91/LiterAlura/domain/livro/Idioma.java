@@ -1,13 +1,17 @@
 package br.com.evaldo91.LiterAlura.domain.livro;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
+/**
+ * Enumeração representando idiomas.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public enum Idioma {
-    ZH("zh", "Chinês"),
+    CH("ch", "Chinês"),
     DA("da", "Dinamarquês"),
     NL("nl", "Holandês"),
     EN("en", "Inglês"),
@@ -27,21 +31,41 @@ public enum Idioma {
     private String idioma;
     private String idiomaEmPortugues;
 
-
+    /**
+     * Retorna o Idioma correspondente ao texto fornecido.
+     *
+     * @param text O texto a ser convertido em Idioma.
+     * @return O Idioma correspondente ao texto.
+     * @throws IllegalArgumentException Se nenhum Idioma corresponder ao texto fornecido.
+     */
     public static Idioma fromString(String text) {
-        for (Idioma idioma : Idioma.values()) {
-            if (idioma.idioma.equalsIgnoreCase(text)) {
-                return idioma;
+        if (text != null) {
+            for (Idioma idioma : Idioma.values()) {
+                if (idioma.idioma.equalsIgnoreCase(text)) {
+                    return idioma;
+                }
             }
         }
-        throw new IllegalArgumentException("Nenhum livro encontrado em " + text);
+        throw new IllegalArgumentException("Nenhum idioma encontrado com o código: " + text);
     }
+
+    /**
+     * Retorna o Idioma correspondente ao texto em português fornecido.
+     *
+     * @param text O texto em português a ser convertido em Idioma.
+     * @return O Idioma correspondente ao texto em português.
+     * @throws IllegalArgumentException Se nenhum Idioma corresponder ao texto em português fornecido.
+     */
     public static Idioma fromPortugues(String text) {
-        for (Idioma idioma : Idioma.values()) {
-            if (idioma.idiomaEmPortugues.equalsIgnoreCase(text)) {
-                return idioma;
+        if (text != null) {
+            for (Idioma idioma : Idioma.values()) {
+                if (idioma.idiomaEmPortugues.equalsIgnoreCase(text)) {
+                    return idioma;
+                }
             }
         }
-        throw new IllegalArgumentException("Nenhum livro encontrado em " + text);
+        throw new IllegalArgumentException("Nenhum idioma encontrado com o nome em português: " + text);
     }
+
+
 }
