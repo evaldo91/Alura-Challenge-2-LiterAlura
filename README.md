@@ -1,6 +1,15 @@
 # Alura Challenge Java: LiterAlura 
 
-Catalago de livro com consumo da Api  Gutendex.
+Catalago de livro com consumo da Api Gutendex que foi proposto com parte da minha formação e desevolvedo back-end pelo programa ONE (Alura + Oracle).
+
+## Sobre a Api Gutendex
+
+Gutendex é uma API web simples e auto-hospedada para fornecer informações do catálogo de livros do Projeto Gutenberg , uma biblioteca online de e-books gratuitos.
+
+## O que é o Projeto Gutenberg?
+
+O Projeto Gutenberg é pioneiro na disponibilização de livros eletrônicos gratuitos, ou e-books, desde 1971, quando Michael Hart inventou o conceito. Em 2021, comemorou 50 anos desde a criação do primeiro e-book, marcando um marco na história da leitura digital. O projeto continua a oferecer uma vasta coleção de literatura mundial, graças ao trabalho voluntário de muitos colaboradores.
+
 
 ## 🚀 Começando
 
@@ -13,63 +22,44 @@ Para ultilzar o catalogo
 ```
 Ide - exemplo Vscode ou Intellij
 Java JDK 17
-Postgres 
+Postgres (ultilizei docker)
 ```
 
 ### 🔧 Instalação
 
-Para usar basta fazer um clone do git e roda
+Para começar a ultizia o programa faça um git clone ultilizando esse comando:
 
 
 ```
 git clone git@github.com:evaldo91/alura-Challenge-2-literAlura.git
 ```
 
-TExplicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
+Crie um novo banco de dados no postgres. 
+Crie as variaveis de abiente seguindo o exemplo a baixo.
 
 ```
-Dar exemplos
+DB_HOST=localhost 
+DB_NAME=alura_series
+DB_USER=postgres
+DB_PASSWORD=abc123
 ```
-
-### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-## 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+Agora é so abri o diretorio do programa na sua ide preferida e roda
+LiterAluraApplication.java
 
 ## 🛠️ Construído com
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
+* [Spring](https://spring.io/projects/spring-framework) - O framework usado no projeto
 * [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
-
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
 
 ## ✒️ Autore
 
-* **Evaldo M. Butzke** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
+* **Evaldo M. Butzke** - *Trabalho Inicial* - [evaldo91](https://github.com/evaldo91)
 
 ## 📄 Licença
 
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](https://github.com/evaldo91/alura-Challenge-2-literAlura/LICENSE) para detalhes.
 
 ## 🎁 Expressões de gratidão
 
