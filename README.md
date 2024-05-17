@@ -59,7 +59,7 @@ Mencione as ferramentas que você usou para criar seu projeto
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](https://github.com/evaldo91/alura-Challenge-2-literAlura/LICENSE) para detalhes.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](https://github.com/evaldo91/alura-Challenge-2-literAlura/blob/main/LICENSE) para detalhes.
 
 ## 🎁 Expressões de gratidão
 

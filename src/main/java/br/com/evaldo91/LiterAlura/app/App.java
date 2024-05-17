@@ -139,7 +139,7 @@ public class App {
         return conversor.obterDados(json, Dados.class);
     }
 
-    public void mostraDadoLivro(@NotNull Livro livro) {
+    public void mostraDadoLivro(Livro livro) {
         var mostraLivro = "----- LIVRO -----" +
                 "\nTitulo: " + livro.getTitulo() +
                 "\nAutor: " + livro.getAutor().getNome() +
