@@ -1,5 +1,6 @@
 package br.com.evaldo91.LiterAlura.infra.service;
 
+
 import java.util.List;
 
 public interface IConverteDados {

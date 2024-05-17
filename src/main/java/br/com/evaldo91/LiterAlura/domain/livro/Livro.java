@@ -7,26 +7,38 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.stream.Collectors;
-
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "livros")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String titulo;
-    @Setter
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne()
     private Autor autor;
-
-    @Enumerated(EnumType.STRING)
     private Idioma idioma;
-
     private int downloads;
+
+    public Livro(Livro dados, Autor autor) {
+        this.titulo = dados.titulo;
+        setAutor(autor);
+        this.idioma = dados.idioma;
+        this.downloads = dados.downloads;
+    }
+
+
+    public Livro(DadosLivro dados) {
+        this.titulo = dados.titulo();
+        this.autor = new Autor(dados.autores());
+        this.idioma = Idioma.fromString(dados.idiomas().getFirst());
+        this.downloads = dados.downloads();
+    }
 
 
     @Override
@@ -40,19 +52,5 @@ public class Livro {
                 '}';
     }
 
-    public Livro(DadosLivro dados, Autor autor) {
-        this.titulo = dados.titulo();
-//        this.autor = new Autor(dados.autores().getFirst());
-        this.idioma = Idioma.fromString(dados.idiomas().stream()
-                .limit(1)
-                .collect(Collectors.joining()));
-        this.downloads = dados.downloads();
 
-
-
-
-    }
-
-    public Livro(DadosLivro dadosLivro) {
-    }
 }

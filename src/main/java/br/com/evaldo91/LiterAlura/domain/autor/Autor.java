@@ -1,19 +1,20 @@
 package br.com.evaldo91.LiterAlura.domain.autor;
 
-import br.com.evaldo91.LiterAlura.domain.livro.DadosLivro;
 import br.com.evaldo91.LiterAlura.domain.livro.Livro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Embeddable
+
+@Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "autores")
 public class Autor {
@@ -25,35 +26,22 @@ public class Autor {
     private int nascimento;
     private int falecimento;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Livro> livros;
+    @Column(unique = true)
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Livro> livro = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", nascimento=" + nascimento +
-                ", falecimento=" + falecimento +
-                ", livros=" + livros +
-                '}';
-    }
 
-    public Autor(Livro livro) {
-        this.nome = livro.getAutor().getNome();
-        this.nascimento = livro.getAutor().getNascimento();
-        this.falecimento = livro.getAutor().getFalecimento();
-        this.livros = new ArrayList<>();
 
-    }
-
-    public Autor(DadosAutor dadosAutor) {
+    public Autor(List<DadosAutor> dados) {
+        this.nome = dados.getFirst().nome();
+        this.nascimento = dados.getFirst().nascimento();
+        this.falecimento = dados.getFirst().falecimento();
     }
 
 
-    public void adicionarLivro(List<Livro> livros) {
-        livros.forEach(l -> l.setAutor(this));
-        this.livros = livros;
+    public Autor(Autor dados) {
+        this.nome = dados.nome;
+        this.nascimento = dados.nascimento;
+        this.falecimento = dados.falecimento;
     }
-
 }

@@ -1,11 +1,10 @@
 package br.com.evaldo91.LiterAlura.domain.livro;
 
-
 import br.com.evaldo91.LiterAlura.domain.autor.DadosAutor;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DadosLivro(
@@ -16,7 +15,6 @@ public record DadosLivro(
 //        @JsonAlias("copyright") String copyright,
         @JsonAlias("download_count") Integer downloads
 ) {
-
 
 
 }
