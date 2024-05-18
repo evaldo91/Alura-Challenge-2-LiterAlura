@@ -44,4 +44,5 @@ public class Autor {
         this.nascimento = dados.nascimento;
         this.falecimento = dados.falecimento;
     }
+
 }

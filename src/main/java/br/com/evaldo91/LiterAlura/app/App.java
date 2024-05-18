@@ -8,7 +8,6 @@ import br.com.evaldo91.LiterAlura.domain.livro.Livro;
 import br.com.evaldo91.LiterAlura.domain.livro.LivroRepository;
 import br.com.evaldo91.LiterAlura.infra.service.ConsumoApi;
 import br.com.evaldo91.LiterAlura.infra.service.ConverteDados;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -25,6 +24,10 @@ public class App {
             2 - Lista livros registrado
             3 - Lista autores registado
             4 - Lista livro com base no idioma
+            5 - Lista autores vivos em um ano determinado
+            6 - Top 10 livros mais baixado
+            7 - Busca autor
+            
             \n
             \n
             0 - Sair
@@ -51,33 +54,57 @@ public class App {
         var opcao = -1;
         while (opcao != 0) {
             System.out.println(menu);
-            opcao = scanner.nextInt();
-            scanner.nextLine();
 
-            switch (opcao) {
-                case 1:
-                    buscarLivroNaWeb();
-                    break;
-                case 2:
-                    listaLivrosRegistado();
-                    break;
-                case 3:
-                    listaAutoresRegistrado();
-                    break;
-                case 4:
-                    listaLivroPorIdioma();
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-                    break;
-            }
+
+           try {
+               opcao = scanner.nextInt();
+
+
+           }catch(InputMismatchException ignored){
+
+
+           }
+            scanner.nextLine();
+               switch (opcao) {
+                   case 1:
+                       buscarLivroNaWeb();
+                       break;
+                   case 2:
+                       listaLivrosRegistado();
+                       break;
+                   case 3:
+                       listaAutoresRegistrado();
+                       break;
+                   case 4:
+                       listaLivroPorIdioma();
+                       break;
+                   case 5:
+                       listaAutoresVivos();
+                       break;
+                   case 6:
+                       top10livro();
+                       break;
+                   case 7:
+                       buscaAutor();
+                       break;
+                   case 0:
+                       System.out.println("Saindo...");
+                       break;
+                   default:
+                       System.out.println("Opção inválida");
+                       break;
+               }
+
+
+
+
         }
 
 
     }
+
+
+
 
     private void buscarLivroNaWeb() {
         System.out.println("Digite o nome do livro:");
@@ -133,11 +160,40 @@ public class App {
 
 
     }
+    private void listaAutoresVivos() {
+        System.out.println("Digite um ano");
+        var ano = scanner.nextInt();
+        scanner.nextLine();
+        List<Autor> autores = autorRepository.findByFalecimentoGreaterThan(ano);
+        System.out.println("\nAutores vivo antes de " +ano+"\n");
+        autores.forEach(this::mostraDadosAutor);
+    }
+    private void top10livro() {
+        List<Livro> livroList = livroRepository.findTop10ByOrderByDownloadsDesc();
+        System.out.println("\n Top 10 livros mais baixados \n");
+        livroList.forEach(this::mostraDadoLivro);
+
+    }
+    private void buscaAutor() {
+        System.out.println("\nDigite o nome do autor que desja buscar\n");
+        var nome = scanner.nextLine();
+        Autor autor = autorRepository.findByNomeContainingIgnoreCase(nome);
+        if(autor != null){var motraAutor = "\n---- AUTOR -----\n" +
+                "\nNome: " + autor.getNome() +
+                "\nData de nascimento: " + autor.getNascimento() +
+                "\nData de falecimento: " + autor.getFalecimento() +
+                "\n-----------------\n";
+            System.out.println(motraAutor);}else{
+        System.out.println("Autor nao encontrado");
+        }
+
+    }
 
     private Dados obterDadosLivro(String busca) {
         String json = api.obtenerDados("http://gutendex.com/books/?search=" + busca);
         return conversor.obterDados(json, Dados.class);
     }
+
 
     public void mostraDadoLivro(Livro livro) {
         var mostraLivro = "----- LIVRO -----" +
